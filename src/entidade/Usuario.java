@@ -7,8 +7,20 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String cpf;
-	private ArrayList<Pruu> pruu = new ArrayList<>(); 
+	private boolean bloquear;
 	
+	public static ArrayList<Pruu> pruu = new ArrayList<>(); 
+	
+	
+	
+	public void cadastrarPruu(Pruu pru) {
+		pruu.add(pru);
+	}
+	
+	
+	public void darLike(Pruu like) {
+		like.somarLike();		
+	}
 	
 	public Usuario() {
 		super();
@@ -19,6 +31,7 @@ public class Usuario {
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
+		
 	}
 	
 	public String getNome() {
@@ -44,11 +57,22 @@ public class Usuario {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
-	@Override
-	public String toString() {
-		return "Usuario [nome=" + nome + ", email=" + email + ", cpf=" + cpf + "]";
+
+	public static ArrayList<Pruu> getPruu() {
+		return pruu;
 	}
+
+	public void setPruu(ArrayList<Pruu> pruu) {
+		
+		Usuario.pruu = pruu;
+	}
+
+
+
+
+	
+	
+
 	
 	
 }

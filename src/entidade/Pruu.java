@@ -1,33 +1,42 @@
 package entidade;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Pruu {
-	private int id;
+	private int id = ThreadLocalRandom.current().nextInt(25);
 	private String texto;
-	private Date data;
+	private Date data = new Date();
 	private int like;
-	private boolean bloquear;
+	private boolean bloquear = false;
+	private Usuario usuario;
+	private String dataformatada;
+
+	
+	public void somarLike() {
+		like++;
+	}
 	
 	public Pruu() {
 		super();
 	}
 
-	public Pruu(int id, String texto, Date data, int like, boolean bloquear) {
+	public Pruu(String texto, Usuario usuario) {
 		super();
-		this.id = id;
-		this.texto = texto;
-		this.data = data;
-		this.like = like;
-		this.bloquear = bloquear;
+		if((texto.length() > 300) || (texto.trim().length() < 1)) {
+			System.out.println("Texto excede o limite de character");
+			this.bloquear = true;
+		}
+		this.texto = texto;	
+		this.usuario = usuario;
+		SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
+		String dataformatada = formatador.format(data);
+		this.dataformatada = dataformatada;
 	}
 
-	public int getId() {
+	public int getId() {		 
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getTexto() {
@@ -40,11 +49,7 @@ public class Pruu {
 
 	public Date getData() {
 		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
+	}	
 
 	public int getLike() {
 		return like;
@@ -64,8 +69,11 @@ public class Pruu {
 
 	@Override
 	public String toString() {
-		return "Pruu [id=" + id + ", texto=" + texto + ", data=" + data + ", like=" + like + ", bloquear=" + bloquear
-				+ "]";
+		if (isBloquear()) {
+			return ""+"\nPruu" + "\nid: " + this.id +"\nUsuario: " + usuario.getNome() + "\nBloqueado" + "\n";
+		}
+		return ""+"\nPruu" + "\nid: " + this.id + "\nUsuario: " + usuario.getNome() +"\nTexto: " + this.texto + "\nLikes: " + this.like
+				+ "\nData: " + this.dataformatada + "\n";
 	}
 	
 	
