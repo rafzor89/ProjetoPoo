@@ -11,7 +11,7 @@ public class Pruu {
 	private int like;
 	private boolean bloquear = false;
 	private Usuario usuario;
-	private String dataformatada;
+	private String dataFormatada;
 
 	
 	public void somarLike() {
@@ -32,7 +32,7 @@ public class Pruu {
 		this.usuario = usuario;
 		SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
 		String dataformatada = formatador.format(data);
-		this.dataformatada = dataformatada;
+		this.dataFormatada = dataformatada;
 	}
 
 	public int getId() {		 
@@ -73,7 +73,7 @@ public class Pruu {
 			return ""+"\nPruu" + "\nid: " + this.id +"\nUsuario: " + usuario.getNome() + "\nBloqueado" + "\n";
 		}
 		return ""+"\nPruu" + "\nid: " + this.id + "\nUsuario: " + usuario.getNome() +"\nTexto: " + this.texto + "\nLikes: " + this.like
-				+ "\nData: " + this.dataformatada + "\n";
+				+ "\nData: " + this.dataFormatada + "\n";
 	}
 	
 	
